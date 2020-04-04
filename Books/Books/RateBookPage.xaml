@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:local="clr-namespace:Books;assembly=Books"
+             Opacity="100"
+             InputTransparent="False"
+             x:Class="Books.RateBookPage">
+    <!--Animations use example-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+      PositionIn="Center"
+      PositionOut="Center"
+      ScaleIn="1.2"
+      ScaleOut="0.8"
+      DurationIn="400"
+      DurationOut="300"
+      EasingIn="SinOut"
+      EasingOut="SinIn"
+      HasBackgroundAnimation="False"/>
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
+        <StackLayout BackgroundColor="#1E1E1E" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300" HeightRequest="300" Padding="10">
+            <Label FontSize="20" Text="Rate Book" HorizontalOptions="Center"/>
+            <Label Text="{Binding BookName}"/>
+            <Label Text="{Binding Authors}"/>
+            <Editor x:Name="entryReview" Text="" HeightRequest="100" Placeholder="Enter your review here"/>
+            <StackLayout Orientation="Horizontal" HeightRequest="70">
+                <Grid>
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starOne" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankOne"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="starSelectedOne"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference starOne},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starTwo" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankTwo"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="starSelectedTwo"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference starTwo},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starThree" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankThree"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="starSelectedThree"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference starThree},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starFour" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankFour"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="starSelectedFour"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference starFour},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="starFive" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankFive"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="starSelectedFive"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference starFive},
+                                    Path=IsStarred}"/>
+                </Grid>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <local:RatingConverter x:Key="ratingConverter" />
+                        <Style TargetType="Label">
+                            <Setter Property="TextColor" Value="#4CAF50" />
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Label x:Name="labelResult" IsVisible="False" Text="{Binding Source={x:Reference starFive},
+                                    Path=Rating, Converter={StaticResource ratingConverter}}" ></Label>
+            </StackLayout>
+            <Button Text="Submit" Clicked="Submit_Clicked"/>
+        </StackLayout>
+    </pages:PopupPage.Content>
+    <!-- Content -->
+</pages:PopupPage>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:custom="clr-namespace:Books.CustomControls;assembly=Books"
+             Style="{DynamicResource backgroundStyle}"
+             x:Class="Books.UserDetailsPage">
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand  EventName="Appearing" Command="{Binding UserDetailsAppearingCommand}"/>
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <custom:AdMobView IsVisible="{Binding ShowAds}"></custom:AdMobView>
+            <controls:CircleImage WidthRequest="75" HeightRequest="75" Aspect="AspectFit" Source="{Binding ProfilePicture}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="Total Books" Grid.Row="1" Grid.Column="0"/>
+                <Label Text="Careful with books" Grid.Row="2" Grid.Column="0"/>
+                <Label Text="Returns books on time" Grid.Row="3" Grid.Column="0"/>
+                <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="1"/>
+                <Label Text="{Binding BookCount}" Grid.Row="1" Grid.Column="1"/>
+                <Label Text="{Binding BookQuality}" Grid.Row="2" Grid.Column="1"/>
+                <Label Text="{Binding TimeQuality}" Grid.Row="3" Grid.Column="1"/>
+            </Grid>
+            <Button Text="View Reviews" Command="{Binding ViewReviewsCommand}" IsVisible="{Binding DisplayReviewsButton}"/>
+            <ContentView IsVisible="{Binding DisplayReviews}">
+                <StackLayout>
+                    <ListView BackgroundColor="#1E1E1E" x:Name="BooksListView" HasUnevenRows="True" ItemsSource="{Binding Reviews}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="100" x:Name="viewCell">
+                                    <Frame>
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Name}"/>
+                                                <Label Text="{Binding BookQuality}"/>
+                                                <Label Text="{Binding TimeQuality}"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding Comment}"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button IsVisible="{Binding PrevButtonVisible}" Text="Previous" Command="{Binding PreviousPageCommand}"/>
+                    <Button IsVisible="{Binding NextButtonVisible}" Text="Next" Command="{Binding NextPageCommand}"/>
+                </StackLayout>
+            </ContentView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "scale": "1x",
+      "idiom": "universal",
+      "filename": "logo512x512.png"
+    },
+    {
+      "scale": "2x",
+      "idiom": "universal",
+      "filename": "logo512x5121.png"
+    },
+    {
+      "scale": "3x",
+      "idiom": "universal",
+      "filename": "logo512x5122.png"
+    }
+  ],
+  "properties": {},
+  "info": {
+    "version": 1,
+    "author": ""
+  }
+}

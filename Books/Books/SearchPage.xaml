@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Books.SearchPage"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             Style="{DynamicResource backgroundStyle}"
+             Title="Search">
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand  EventName="Appearing" Command="{Binding SearchPageAppearingCommand}"/>
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+        <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" Padding="10">
+            <ContentView VerticalOptions="CenterAndExpand" IsVisible="{Binding ErrorMessageDisplayed}">
+                <StackLayout>
+                    <Label Text="You must add at least one book in order to search for books" />
+                    <Button Text="Add Book" Command="{Binding OpenAddBookPage}"/>
+                </StackLayout>
+            </ContentView>
+            <ContentView VerticalOptions="CenterAndExpand" IsVisible="{Binding FilterVisible}">
+                <StackLayout>
+                    <Image Source="library.png"></Image>
+                    <Label FontSize="20" HorizontalOptions="Center" Text="Set distance"></Label>
+                    <Label FontSize="15" HorizontalOptions="Center" Text="{Binding Distance}"/>
+                    <Slider Maximum="10" Minimum="1" Value="{Binding Distance}"/>
+                    <Button Text="Search" Command="{Binding SearchCommand}"/>
+                </StackLayout>
+            </ContentView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

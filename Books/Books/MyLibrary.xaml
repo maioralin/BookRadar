@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Books;assembly=Books"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:custom="clr-namespace:Books.CustomControls;assembly=Books"
+             Style="{DynamicResource backgroundStyle}"
+             x:Class="Books.MyLibrary">
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand  EventName="Appearing" Command="{Binding MyLibraryAppearingCommand}"/>
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <custom:AdMobView IsVisible="{Binding ShowAds}"></custom:AdMobView>
+            <ListView BackgroundColor="#1E1E1E" x:Name="BooksListView" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" HasUnevenRows="True" ItemsSource="{Binding MyWishlist}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="120">
+                            <Frame Padding="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image HeightRequest="100" Source="{Binding SmallCover}"/>
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Title}"/>
+                                        <Label Text="{Binding Authors}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button IsVisible="{Binding PrevButtonVisible}" Text="Previous" Command="{Binding PreviousPageCommand}"/>
+            <Button IsVisible="{Binding NextButtonVisible}" Text="Next" Command="{Binding NextPageCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

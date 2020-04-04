@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Books;assembly=Books"
+             x:Class="Books.AddBookPage"
+             xmlns:custom="clr-namespace:Books.CustomControls;assembly=Books"
+             Style="{DynamicResource backgroundStyle}"
+             Title="Add Book">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringArrayToStringConverter x:Key="stringConvert"></local:StringArrayToStringConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand" Padding="10">
+                <custom:AdMobView IsVisible="{Binding ShowAds}"></custom:AdMobView>
+                <ContentView VerticalOptions="CenterAndExpand" IsVisible="{Binding SelectionDisplay}">
+                    <StackLayout>
+                      <Image Source="university.png"></Image>
+                      <Button Text="Add by ISBN" Command="{Binding AddByISBNCommand}"/>
+                      <!--<Button Text="Add by Title/Author" Command="{Binding AddByQueryCommand}}"/>-->
+                      <Label Text="Can't find your book here? Add your own!"/>
+                      <Button Text="Add your own book" Command="{Binding AddOwnBookCommand}"/>
+                    </StackLayout>
+                </ContentView>
+                <ContentView VerticalOptions="CenterAndExpand" IsVisible="{Binding AddByISBNDisplay}">
+                    <StackLayout>
+                      <Image Source="open_book.png"></Image>
+                      <Button Text="Scan book" Command="{Binding ScanBookCommand}"/>
+                      <Label Text="ISBN"/>
+                      <Entry Text="{Binding ISBN}" Keyboard="Numeric" MaxLength="13"/>
+                      <Button Text="Search" Command="{Binding SearchByISBNCommand}"/>
+                    </StackLayout>
+                </ContentView>
+                <!--<ContentView IsVisible="{Binding AddByQueryDisplay}">
+                    <StackLayout>
+                        <Label Text="Add book by Title/Author"/>
+                        <Label Text="Title"/>
+                        <Entry Text="{Binding TitleQuery}"/>
+                        <Label Text="Author"/>
+                        <Entry Text="{Binding AuthorQuery}"/>
+                        <Button Text="Search" Command="{Binding SearchByQueryCommand}"/>
+                    </StackLayout>
+                </ContentView>
+                <ContentView IsVisible="{Binding BookListDisplay}">
+                    <StackLayout>
+                        <ListView x:Name="BooksListView" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" HasUnevenRows="True" ItemsSource="{Binding BookList}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}"/>
+                                            <Label Text="{Binding Authors, Converter={StaticResource stringConvert}}"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Button IsVisible="{Binding PrevButtonVisible}" Text="Previous" Command="{Binding PreviousPageCommand}"/>
+                        <Button IsVisible="{Binding NextButtonVisible}" Text="Next" Command="{Binding NextPageCommand}"/>
+                    </StackLayout>
+                </ContentView>-->
+                <ContentView VerticalOptions="FillAndExpand" IsVisible="{Binding AddByISBNShow}">
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <Label FontSize="30" Text="Add book by ISBN"/>
+                        <Frame>
+                            <Image Source="{Binding BookCover}"/>
+                        </Frame>
+                        <Label Text="{Binding BookName}"/>
+                        <Label Text="{Binding AuthorName}"/>
+                        <Picker ItemsSource="{Binding Options}" ItemDisplayBinding="{Binding Label}" SelectedItem="{Binding BookOptions}">
+                            <Picker.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="Android" Value="#1E1E1E"/>
+                                </OnPlatform>
+                            </Picker.BackgroundColor>
+                            <Picker.TextColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="Android" Value="#DDDDDD"/>
+                                </OnPlatform>
+                            </Picker.TextColor>
+                        </Picker>
+                        <Label Text="Description: "/>
+                        <Entry HeightRequest="150" Text="{Binding Description}"/>
+                        <Label Text="Data provided by GoodReads"/>
+                        <Button VerticalOptions="EndAndExpand" Text="Add Book" Command="{Binding AddByISBNMakeRequest}"/>
+                    </StackLayout>
+                </ContentView>
+                <ContentView VerticalOptions="FillAndExpand" IsVisible="{Binding AddOwnBookShow}">
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <Image Source="open-book.png"></Image>
+                        <Label Text="Title"/>
+                        <Entry Text="{Binding OwnName}"/>
+                        <Label Text="Authors"/>
+                        <Entry Text="{Binding OwnAuthor}"/>
+                        <Picker ItemsSource="{Binding Options}" ItemDisplayBinding="{Binding Label}" SelectedItem="{Binding OwnOptions}">
+                            <Picker.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="Android" Value="#1E1E1E"/>
+                                </OnPlatform>
+                            </Picker.BackgroundColor>
+                            <Picker.TextColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="Android" Value="#DDDDDD"/>
+                                </OnPlatform>
+                            </Picker.TextColor>
+                        </Picker>
+                        <Label Text="Description: "/>
+                        <Entry HeightRequest="150" Text="{Binding OwnDescription}"/>
+                        <Button VerticalOptions="EndAndExpand" Text="Add" Command="{Binding AddOwnSubmit}"/>
+                    </StackLayout>
+                </ContentView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

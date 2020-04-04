@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:local="clr-namespace:Books;assembly=Books"
+             BackgroundColor="#00FF5C5C"
+             Opacity="100"
+             InputTransparent="False"
+             x:Class="Books.ReviewUserPage">
+    <!--Animations use example-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+      PositionIn="Center"
+      PositionOut="Center"
+      ScaleIn="1.2"
+      ScaleOut="0.8"
+      DurationIn="400"
+      DurationOut="300"
+      EasingIn="SinOut"
+      EasingOut="SinIn"
+      HasBackgroundAnimation="False"/>
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
+        <StackLayout BackgroundColor="#1E1E1E" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300" HeightRequest="400" Padding="10">
+            <Label Text="Rate Borrower" FontSize="20" HorizontalOptions="Center"/>
+            <Label Text="{Binding BookName}"/>
+            <Label Text="{Binding Name}"/>
+            <Label Text="Book aspect:"/>
+            <StackLayout Orientation="Horizontal" HeightRequest="70">
+                <Grid>
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="bookAspectOne" GroupName="bookAspect"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="bookAspectBlankOne"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="bookAspectSelectedOne"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference bookAspectOne},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="bookAspectTwo" GroupName="bookAspect"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="bookAspectBlankTwo"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="bookAspectSelectedTwo"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference bookAspectTwo},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="bookAspectThree" GroupName="bookAspect"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="bookAspectBlankThree"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="bookAspectSelectedThree"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference bookAspectThree},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="bookAspectFour" GroupName="bookAspect"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="bookAspectBlankFour"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="bookAspectSelectedFour"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference bookAspectFour},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="bookAspectFive" GroupName="bookAspect"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="bookAspectBlankFive"
+                Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="bookAspectSelectedFive"
+                Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                IsVisible="{Binding Source={x:Reference bookAspectFive},
+                                    Path=IsStarred}"/>
+                </Grid>
+            </StackLayout>
+            <Label Text="Return Time"/>
+            <StackLayout Orientation="Horizontal" HeightRequest="70">
+                <Grid>
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="returnTimeOne" GroupName="returnTime"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="returnTimeBlankOne"
+                    Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="returnTimeSelectedOne"
+                    Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                    IsVisible="{Binding Source={x:Reference returnTimeOne},
+                                        Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="returnTimeTwo" GroupName="returnTime"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="returnTimeBlankTwo"
+                    Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="returnTimeSelectedTwo"
+                    Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                    IsVisible="{Binding Source={x:Reference returnTimeTwo},
+                                        Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="returnTimeThree" GroupName="returnTime"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="returnTimeBlankThree"
+                    Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="returnTimeSelectedThree"
+                    Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                    IsVisible="{Binding Source={x:Reference returnTimeThree},
+                                        Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="returnTimeFour" GroupName="returnTime"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="returnTimeBlankFour"
+                    Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="returnTimeSelectedFour"
+                    Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                    IsVisible="{Binding Source={x:Reference returnTimeFour},
+                                        Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local:StarBehavior x:Name="returnTimeFive" GroupName="returnTime"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="returnTimeBlankFive"
+                    Source="https://s18.postimg.cc/ce6u69cpl/star_selected.png" />
+                    <Image x:Name="returnTimeSelectedFive"
+                    Source="https://s18.postimg.cc/ra5ddtt95/star_outline.png"
+                    IsVisible="{Binding Source={x:Reference returnTimeFive},
+                                        Path=IsStarred}"/>
+                </Grid>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <local:RatingConverter x:Key="ratingConverter" />
+                        <Style TargetType="Label">
+                            <Setter Property="TextColor" Value="#4CAF50" />
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Label x:Name="labelResultAspect" IsVisible="False" Text="{Binding Source={x:Reference bookAspectFive},
+                                    Path=Rating, Converter={StaticResource ratingConverter}}" ></Label>
+                <Label x:Name="labelResultTime" IsVisible="False" Text="{Binding Source={x:Reference returnTimeFive},
+                                    Path=Rating, Converter={StaticResource ratingConverter}}" ></Label>
+            </StackLayout>
+            <Editor HeightRequest="100" Placeholder="Enter your review here" x:Name="entryReview" Text=""/>
+            <Button Text="Submit" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </pages:PopupPage.Content>
+    <!-- Content -->
+</pages:PopupPage>
+        

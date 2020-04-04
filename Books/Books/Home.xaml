@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Style="{DynamicResource backgroundStyle}"
+             xmlns:local="clr-namespace:Books"
+             Appearing="ContentPage_Appearing"
+             x:Class="Books.Home">
+    <StackLayout VerticalOptions="Center" 
+           HorizontalOptions="Center" Padding="10">
+        <Image Source="logo512x512.png"></Image>
+        <Image Source="facebook.png">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped="FacebookLogin"  />
+            </Image.GestureRecognizers>
+        </Image>
+    </StackLayout>
+
+</ContentPage>

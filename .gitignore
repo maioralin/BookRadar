@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Books/Books.Android/obj
+/Books/Books.iOS/obj
+/Books/Books.UWP/obj
+/BooksApi/bin
+/packages
+/WebJob/obj/Debug
+/Books/Books.UWP/Package.appxmanifest
+/Books/Books.UWP/Package.StoreAssociation.xml
+/Books/Books.UWP/Books.UWP_TemporaryKey.pfx
+/Books/Books.UWP/Books.UWP_StoreKey.pfx

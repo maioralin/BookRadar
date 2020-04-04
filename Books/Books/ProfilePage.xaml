@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Books;assembly=Books"
+             x:Class="Books.ProfilePage"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:custom="clr-namespace:Books.CustomControls;assembly=Books"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             Style="{DynamicResource backgroundStyle}"
+             Title="ProfilePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DoubleConverter x:Key="doubleConvert"></local:DoubleConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand  EventName="Appearing" Command="{Binding ProfilePageAppearingCommand}"/>
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Label HorizontalOptions="Center" FontSize="16" Text="{Binding LastNameWelcome}"/>
+                <controls:CircleImage WidthRequest="75" HeightRequest="75" Aspect="AspectFit" Source="{Binding ProfilePicture}"/>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="My referral code: "/>
+                        <Label Text="{Binding MyReferalCode}" IsVisible="{Binding ShowReferralCodeLabel}"/>
+                        <Entry Text="{Binding MyReferalCode}" IsVisible="{Binding ShowMyReferralCode}"/>
+                        <Button Text="Share My Referral Code" IsVisible="{Binding ShowReferralCodeLabel}" Command="{Binding ShareReferralCodeCommand}"/>
+                        <Button Text="Submit" IsVisible="{Binding ShowMyReferralCode}" Command="{Binding SubmitReferralCodeCommand}"/>
+                        <Label Text="My invite code: " IsVisible="{Binding ShowMyInviteCode}"/>
+                        <Entry Text="{Binding MyInviteCode}" IsVisible="{Binding ShowMyInviteCode}"/>
+                        <Button Text="Submit" IsVisible="{Binding ShowMyInviteCode}" Command="{Binding SubmitInviteCodeCommand}"/>
+                    </StackLayout>
+                </Frame>
+                <Button Text="Logout" Command="{Binding LogoutCommand}"/>
+                <Label Text="Latitude"></Label>
+                <Entry Text="{Binding Latitude}"></Entry>
+                <Label Text="Longitude"></Label>
+                <Entry Text="{Binding Longitude}"></Entry>
+                <Button Text="Update Geolocation" Command="{Binding UpdateGeoLocationCommand}" />
+                <Button Text="Delete Account" Command="{Binding DeleteAccountCommand}" />
+                <!--<Button Text="Remove Ads" Command="{Binding RemoveAdsCommand}" />-->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

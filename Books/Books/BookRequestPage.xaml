@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:custom="clr-namespace:Books.CustomControls;assembly=Books"
+             Style="{DynamicResource backgroundStyle}"
+             x:Class="Books.BookRequestPage">
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand  EventName="Appearing" Command="{Binding BookRequestPageAppearingCommand}"/>
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <custom:AdMobView IsVisible="{Binding ShowAds}"></custom:AdMobView>
+            <Frame Padding="10">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="{Binding Cover}"/>
+                    <StackLayout VerticalOptions="Fill">
+                        <Label VerticalOptions="Start" Text="{Binding Title}"/>
+                        <Label VerticalOptions="FillAndExpand" Text="{Binding Authors}"/>
+                        <StackLayout VerticalOptions="End" Orientation="Horizontal">
+                            <Button Text="View Book" Command="{Binding ViewBookCommand}"/>
+                            <Button Text="View User" Command="{Binding ViewUserCommand}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <ListView BackgroundColor="#1E1E1E" x:Name="BooksListView" HasUnevenRows="True" SeparatorVisibility="None" ItemsSource="{Binding Messages}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="{Binding Margin}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" FontSize="10"/>
+                                    <!--<Label Text="{Binding SentDate}"/>-->
+                                </StackLayout>
+                                <Frame CornerRadius="10" Padding="5" BackgroundColor="{Binding FrameColor}">
+                                    <Label Text="{Binding Text}"/>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Text="{Binding OfferedExchangeText}" IsVisible="{Binding OfferedExchangeTextVisible}"/>
+            <Button Command="{Binding RejectExchangeBookCommand}" Text="Reject Exchanged Book" IsVisible="{Binding OfferedExchangeTextVisible}"/>
+            <StackLayout Orientation="Horizontal">
+                <DatePicker HorizontalOptions="FillAndExpand" IsVisible="{Binding OfferButtonVisible}" Date="{Binding ProposedDate}">
+                    <DatePicker.TextColor>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="Android" Value="#DDDDDD"/>
+                        </OnPlatform>
+                    </DatePicker.TextColor>
+                </DatePicker>
+                <Button HorizontalOptions="End" Command="{Binding OfferBookCommand}" Text="Offer Book" IsVisible="{Binding OfferButtonVisible}"/>
+            </StackLayout>
+            <Button Command="{Binding OfferExchangeBookCommand}" Text="Offer Book In Exchange" IsVisible="{Binding OfferExchangeButtonVisible}"/>
+            <Button Command="{Binding RequestTimeCommand}" Text="Ask for more time" IsVisible="{Binding RequestTimeButtonVisible}"/>
+            <Label Text="{Binding ExtraTimeText}" IsVisible="{Binding TimeRequestResponseVisible}"/>
+            <StackLayout Orientation="Horizontal">
+                <Button HorizontalOptions="FillAndExpand" Command="{Binding AcceptTimeRequestCommand}" Text="Accept extra time request" IsVisible="{Binding TimeRequestResponseVisible}"/>
+                <Button HorizontalOptions="FillAndExpand" Command="{Binding RejectTimeRequestCommand}" Text="Reject extra time request" IsVisible="{Binding TimeRequestResponseVisible}"/>
+            </StackLayout>
+            <Button Command="{Binding AcceptBookCommand}" Text="Accept Book" IsVisible="{Binding AcceptButtonVisible}"/>
+            <Button Command="{Binding ReturnBookCommand}" Text="Return Book" IsVisible="{Binding ReturnButtonVisible}"/>
+            <Button Command="{Binding AcceptReturnBookCommand}" Text="Accept Return" IsVisible="{Binding AcceptReturnButtonVisible}"/>
+            <Button Command="{Binding ReviewRequesterCommand}" Text="Review Requester" IsVisible="{Binding ReviewRequesterButtonVisible}"/>
+            <Button Command="{Binding MakeBookAvailableCommand}" Text="Make Book Available" IsVisible="{Binding MakeBookAvailableButtonVisible}"/>
+            <Button Command="{Binding LoadMessagesCommand}" Text="Load more messages" IsVisible="{Binding LoadMessagesButtonVisible}"/>
+            <StackLayout  Orientation="Horizontal">
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding MessageText}"/>
+                <Button HorizontalOptions="End" Command="{Binding SendMessageCommand}" Text="Send"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

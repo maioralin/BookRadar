@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Books.App">
+	<Application.Resources>
+
+        <ResourceDictionary>
+            <Style x:Key="backgroundStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{DynamicResource backgroundColor}"/>
+            </Style>
+            <Style x:Key="addBookStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{DynamicResource entryColor}"/>
+            </Style>
+            <Style x:Key="menuStyle" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{DynamicResource menuColor}"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource labelColor}"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource buttonColor}"/>
+                <Setter Property="TextColor" Value="{DynamicResource buttonText}"/>
+                <Setter Property="BorderColor" Value="{DynamicResource buttonBorderColor}"/>
+                <Setter Property="BorderRadius" Value="{DynamicResource buttonBorderRadius}"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HeightRequest" Value="36"/>
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Int32" iOS="10" Android="10"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{DynamicResource entryColor}"/>
+                <Setter Property="TextColor" Value="{DynamicResource entryText}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HeightRequest" Value="36"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="BackgroundColor" Value="{DynamicResource entryColor}"/>
+                <Setter Property="TextColor" Value="{DynamicResource entryText}"/>
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{DynamicResource entryColor}"/>
+            </Style>
+        </ResourceDictionary>
+		<!-- Application resource dictionary -->
+
+	</Application.Resources>
+</Application>

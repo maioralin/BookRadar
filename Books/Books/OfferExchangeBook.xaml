@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:zx="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             Opacity="100"
+             InputTransparent="False"
+             x:Class="Books.OfferExchangeBook">
+    <!--Animations use example-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+      PositionIn="Center"
+      PositionOut="Center"
+      ScaleIn="1.2"
+      ScaleOut="0.8"
+      DurationIn="400"
+      DurationOut="300"
+      EasingIn="SinOut"
+      EasingOut="SinIn"
+      HasBackgroundAnimation="False"/>
+    </pages:PopupPage.Animation>
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand  EventName="Appearing" Command="{Binding BookExchangePageAppearingCommand}"/>
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <StackLayout BackgroundColor="{DynamicResource entryColor}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300" HeightRequest="300" Padding="10">
+        <Label Text="Permanent exchange:"/>
+        <Switch IsToggled="{Binding Permanent}"/>
+        <ListView BackgroundColor="#1E1E1E" x:Name="BooksListView" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" HasUnevenRows="True" ItemsSource="{Binding MyBooks}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="50">
+                        <StackLayout>
+                            <Label Text="{Binding Title}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Offer in exchange" Command="{Binding BookSelectedCommand}"/>
+    </StackLayout>
+    <!-- Content -->
+</pages:PopupPage>

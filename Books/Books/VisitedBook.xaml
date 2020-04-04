@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Books;assembly=Books"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:custom="clr-namespace:Books.CustomControls;assembly=Books"
+             Style="{DynamicResource backgroundStyle}"
+             x:Class="Books.VisitedBook">
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand  EventName="Appearing" Command="{Binding VisitedBookAppearingCommand}"/>
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand" Padding="10">
+                <custom:AdMobView IsVisible="{Binding ShowAds}"></custom:AdMobView>
+                <Frame>
+                    <Image Source="{Binding Cover}" />
+                </Frame>
+                <Grid VerticalOptions="Fill">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Title" Grid.Row="0" Grid.Column="0" />
+                    <Label Text="Authors" Grid.Row="1" Grid.Column="0" />
+                    <Label Text="TotalReviews" Grid.Row="2" Grid.Column="0" />
+                    <Label Text="Average" Grid.Row="3" Grid.Column="0" />
+                    <Label Text="Owner" IsVisible="{Binding ShowExtra}" Grid.Row="4" Grid.Column="0"/>
+                    <Label Text="Distance" IsVisible="{Binding ShowExtra}" Grid.Row="5" Grid.Column="0" />
+                    <Label Text="Status" IsVisible="{Binding IsOwner}" Grid.Row="6" Grid.Column="0"/>
+                    <Label Text="Description" Grid.Row="7" Grid.Column="0"/>
+                    <Label Text="Type" Grid.Row="8" Grid.Column="0"/>
+                    <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1" />
+                    <Label Text="{Binding Authors}" Grid.Row="1" Grid.Column="1" />
+                    <Label Text="{Binding TotalReviews}" Grid.Row="2" Grid.Column="1" />
+                    <Label Text="{Binding Average}" Grid.Row="3" Grid.Column="1" />
+                    <Label Text="{Binding Owner}" IsVisible="{Binding ShowExtra}" Grid.Row="4" Grid.Column="1"/>
+                    <Label Text="{Binding Distance, StringFormat='\{0:0.000\} km'}" IsVisible="{Binding ShowExtra}" Grid.Row="5" Grid.Column="1" />
+                    <Label Text="{Binding Status}" IsVisible="{Binding IsOwner}" Grid.Row="6" Grid.Column="1"/>
+                    <Label Text="{Binding Description}"  Grid.Row="7" Grid.Column="1"/>
+                    <Label Text="{Binding Type}"  Grid.Row="8" Grid.Column="1"/>
+                </Grid>
+                <Button Text="I want this book!" Command="{Binding BookRequestCommand}" IsVisible="{Binding ShowExtra}"/>
+                <Button Text="Rate this book!" IsVisible="{Binding ShowReviewButton}" Command="{Binding RateBookCommand}"/>
+                <Button Text="View User Profile" Command="{Binding ViewUserCommand}"/>
+                <StackLayout>
+                    <ListView BackgroundColor="#1E1E1E" Footer="" x:Name="BooksListView" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" HasUnevenRows="True" ItemsSource="{Binding BookReviews}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="100">
+                                    <Frame>
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Name}"/>
+                                                <Label Text="{Binding Rating}"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding Comment}"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <Button IsVisible="{Binding PrevButtonVisible}" Text="Previous" Command="{Binding PreviousPageCommand}"/>
+                <Button IsVisible="{Binding NextButtonVisible}" Text="Next" Command="{Binding NextPageCommand}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
